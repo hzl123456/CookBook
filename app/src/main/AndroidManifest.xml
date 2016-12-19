@@ -19,7 +19,10 @@
         <activity
             android:name=".activity.CookBookDetailActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/OptionsActivity" />
+            android:theme="@style/Transitions" />
+        <activity
+            android:name=".activity.DownloadActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 

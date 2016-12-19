@@ -55,14 +55,6 @@ public abstract class BaseRecycleAdapter<T, D extends BaseRecycleViewHolder> ext
     }
 
     @Override
-    public void onBindViewHolder(D holder, int position, List<Object> payloads) {
-        if (payloads == null && payloads.size() == 0) {
-            onBindViewHolder(holder, position);
-            return;
-        }
-    }
-
-    @Override
     public int getItemCount() {
         return mData == null ? 0 : mData.size();
     }

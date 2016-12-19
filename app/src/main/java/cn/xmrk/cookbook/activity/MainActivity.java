@@ -48,7 +48,6 @@ public class MainActivity extends BaseActivity implements AuthorityContract.View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         new AuthorityPresenter(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE});
     }
 
@@ -60,20 +59,28 @@ public class MainActivity extends BaseActivity implements AuthorityContract.View
 
     @Override
     public void findViews() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
         nav_view = (NavigationView) findViewById(R.id.nav_view);
         drawer_layout = (DrawerLayout) findViewById(R.id.drawer_layout);
     }
 
     @Override
     public void initViews() {
-        //设置当前的toolbar
-        setSupportActionBar(toolbar);
+        //toolbar不需要滚动
+        setToolbarNeedToScrollow(false);
         //为drawer_layout设置toggle
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer_layout, getTitlebar(), R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer_layout.setDrawerListener(toggle);
         toggle.syncState();
+
+        nav_view.getMenu().add("DownloadActivity").setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                startActivity(DownloadActivity.class);
+                drawer_layout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
     }
 
 
@@ -93,8 +100,8 @@ public class MainActivity extends BaseActivity implements AuthorityContract.View
     }
 
     /**
-     *  这边表示权限管理失败了，对应失败的方法，（这边默认的是在presenter里面给了个弹窗）
-     * */
+     * 这边表示权限管理失败了，对应失败的方法，（这边默认的是在presenter里面给了个弹窗）
+     */
     @Override
     public void loadAuthorityFail() {
 

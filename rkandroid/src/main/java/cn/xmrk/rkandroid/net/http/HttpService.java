@@ -4,6 +4,7 @@ package cn.xmrk.rkandroid.net.http;
 import cn.xmrk.rkandroid.net.entity.BaseResultEntity;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.Streaming;
@@ -15,13 +16,6 @@ import rx.Observable;
  * Created by WZG on 2016/7/16.
  */
 public interface HttpService {
-
-    /**
-     * 根据名称获取菜谱信息，这边是一个list
-     * @param name 菜品名称
-     * **/
-    @POST("name")
-    Observable<BaseResultEntity> getCookBookName(@Query("name") String name);
 
 
     /**
@@ -41,9 +35,9 @@ public interface HttpService {
     Observable<BaseResultEntity> getCookBookKinds(@Query("id") String id);
 
 
-    /*下载接口*/
+    /*断点续传下载接口*/
     @Streaming/*大文件需要加入这个判断，防止下载过程中写入到内存中*/
     @GET
-    Observable<ResponseBody> downloadFile(@Url String url);
+    Observable<ResponseBody> downloadFile(@Header("RANGE") String start, @Url String url);
 
 }

@@ -5,9 +5,11 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.trello.rxlifecycle.components.support.RxAppCompatActivity;
@@ -30,6 +32,7 @@ public abstract class BaseActivity extends RxAppCompatActivity {
 
     private DialogUtil pdm;
 
+    private LinearLayout layoutTopShow;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -41,20 +44,50 @@ public abstract class BaseActivity extends RxAppCompatActivity {
         View contentView = getLayoutInflater().inflate(R.layout.app_bar_main, null);
         //加载头部，头部使用toolbar进行显示
         titlebar = (Toolbar) contentView.findViewById(R.id.toolbar);
+        layoutTopShow = (LinearLayout) contentView.findViewById(R.id.layout_top_show);
         //加载内容主体容器，并且将实际内容放进去
         RelativeLayout contentLayout = (RelativeLayout) contentView.findViewById(R.id.layout_containert);
         contentLayout.addView(view);
         super.setContentView(contentView);
         setSupportActionBar(titlebar);
-        // setStatusColor();
+        setToolbarNeedToScrollow(true);
+        setStatusColor(true);
+    }
+
+
+    /**
+     * 设置toolbar是否需要滚动，默认的是滚动的状态
+     **/
+    public void setToolbarNeedToScrollow(boolean isNeed) {
+        AppBarLayout.LayoutParams layoutParams = (AppBarLayout.LayoutParams) titlebar.getLayoutParams();
+        if (isNeed) {
+            layoutParams.setScrollFlags(AppBarLayout.LayoutParams.SCROLL_FLAG_ENTER_ALWAYS | AppBarLayout.LayoutParams.SCROLL_FLAG_SCROLL);
+        } else {
+            layoutParams.setScrollFlags(0);
+        }
+        titlebar.setLayoutParams(layoutParams);
+    }
+
+    /**
+     * 加载滚动时候保持显示的view
+     **/
+    public void setTopShowView(View view) {
+        if (view != null) {
+            layoutTopShow.removeAllViews();
+            layoutTopShow.addView(view);
+        }
     }
 
     /**
      * 5.0以上设置状态栏的颜色，其实在6.0以上才有效果
      **/
-    private void setStatusColor() {
+    public void setStatusColor(boolean isNeed) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            getWindow().setStatusBarColor(getResources().getColor(R.color.bg_title_bar));
+            if (isNeed) {
+                getWindow().setStatusBarColor(getResources().getColor(R.color.bg_title_bar));
+            } else {
+                getWindow().setStatusBarColor(getResources().getColor(R.color.transparent));
+            }
         }
     }
 
