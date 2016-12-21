@@ -29,6 +29,7 @@ public abstract class SpacesItemDecorationEntrust {
         }
     }
 
+
     abstract void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state);
 
     abstract void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state);

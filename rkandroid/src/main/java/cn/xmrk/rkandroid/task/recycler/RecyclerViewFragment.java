@@ -56,7 +56,6 @@ public abstract class RecyclerViewFragment<T> extends BaseFragment implements Re
         }
     }
 
-
     public abstract RecyclerFragmentPresenter getRecyclerFragmentPresenter(@NonNull RecyclerFragmentContract.View mView, boolean isCreate, String id);
 
     public abstract RecyclerAdapter<T> getUserRecyclerAdapter(Fragment fragment);
@@ -89,7 +88,6 @@ public abstract class RecyclerViewFragment<T> extends BaseFragment implements Re
         int space = CommonUtil.dip2px(5);
         rv_content.addItemDecoration(new SpacesItemDecoration(space, space));
     }
-
 
     @Override
     public void onRefresh() {

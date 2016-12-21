@@ -37,6 +37,7 @@ public abstract class RecyclerAdapter<T> extends HeaderFooterRecyclerViewAdapter
         return mFragment;
     }
 
+
     private boolean isLoading;
 
 

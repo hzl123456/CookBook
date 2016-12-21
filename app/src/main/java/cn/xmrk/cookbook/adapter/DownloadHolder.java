@@ -107,6 +107,7 @@ public class DownloadHolder extends BaseRecycleViewHolder<DownloadInfo> implemen
         @Override
         public void onStop() {
             super.onStop();
+            tv_info.setText("下载停止：");
         }
 
         @Override

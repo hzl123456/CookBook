@@ -6,11 +6,11 @@ package cn.xmrk.rkandroid.net.entity;
  */
 
 public enum DownState {
-    START(0),
+    ERROR(0),
     DOWN(1),
     PAUSE(2),
     STOP(3),
-    ERROR(4),
+    START(4),
     FINISH(5);
     private int state;
 

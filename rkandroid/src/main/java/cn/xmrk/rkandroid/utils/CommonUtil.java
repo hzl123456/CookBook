@@ -59,6 +59,7 @@ import cn.xmrk.rkandroid.application.RKApplication;
 
 public class CommonUtil {
 
+
     protected static Toast toast;
 
     /**

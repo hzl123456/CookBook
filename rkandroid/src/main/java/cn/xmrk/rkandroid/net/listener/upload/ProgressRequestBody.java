@@ -33,6 +33,7 @@ public class ProgressRequestBody extends RequestBody {
         this.progressListener = progressListener;
         this.fileName = fileName;
     }
+
     /**
      * 重写调用实际的响应体的contentType
      *
