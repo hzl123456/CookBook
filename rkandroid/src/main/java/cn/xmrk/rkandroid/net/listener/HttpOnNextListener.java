@@ -11,6 +11,7 @@ public abstract class HttpOnNextListener {
 
     /**
      * 成功后回调方法
+     *
      * @param
      */
     public abstract void onNext(BaseResultEntity result);
@@ -18,16 +19,17 @@ public abstract class HttpOnNextListener {
     /**
      * 失败或者错误方法
      * 主动调用，更加灵活
+     *
      * @param e
      */
-    public  void onError(Throwable e){
+    public void onError(Throwable e) {
 
     }
 
     /**
      * 取消回調
      */
-    public void onCancel(){
+    public void onCancel() {
 
     }
 }

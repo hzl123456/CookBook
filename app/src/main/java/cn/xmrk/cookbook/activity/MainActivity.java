@@ -8,7 +8,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import java.util.ArrayList;
@@ -32,8 +31,6 @@ public class MainActivity extends BaseActivity implements AuthorityContract.View
 
     //权限管理的presenter
     private AuthorityContract.Presenter mPresenter;
-
-    private Toolbar toolbar;
     private NavigationView nav_view;
     private DrawerLayout drawer_layout;
 

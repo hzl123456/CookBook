@@ -67,7 +67,7 @@ public class DownloadDb {
      * @param info
      */
     public Dao.CreateOrUpdateStatus saveUpdateDownloadInfo(DownloadInfo info) {
-        //TODO 同时通过rx进行发送出来
+        //TODO 同时通过rxbus进行发送出来
         RxBus.getDefault().post(info);
         Dao _dao = getDownloadInfoDao();
         try {
@@ -105,8 +105,8 @@ public class DownloadDb {
     public List<DownloadInfo> getDownloadInfo() {
         Dao _dao = getDownloadInfoDao();
         QueryBuilder<DownloadInfo, Integer> _qb = _dao.queryBuilder();
-        //按照状态由小到大排序
-        _qb.orderBy("state", true);
+        //按照状态值进行排序
+        _qb.orderBy("state", false);
         try {
             //TODO 对文件进行状态的检查,主要检查文件是否存在
             List<DownloadInfo> mDatas = _qb.query();
@@ -125,7 +125,6 @@ public class DownloadDb {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return null;
     }
 }

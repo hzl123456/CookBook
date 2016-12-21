@@ -128,5 +128,6 @@ public abstract class RecyclerFragmentPresenter<T> implements RecyclerFragmentCo
 
     @Override
     public void start() {
+
     }
 }
